@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hüseyin Karacif | Portfolio</title>
+    <title>Hüseyin Karacif | Senior Software Developer</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -15,329 +15,454 @@
             darkMode: 'class',
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Poppins', 'sans-serif'] },
-                    colors: { dark: '#0a0a0a', darker: '#050505', primary: '#6366f1', secondary: '#ec4899' },
-                    animation: { 'blob': 'blob 7s infinite' },
+                    fontFamily: { 
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
+                    colors: { 
+                        dark: '#050505', 
+                        darker: '#020202', 
+                        accent: {
+                            primary: '#6366f1',
+                            secondary: '#a855f7',
+                            tertiary: '#ec4899'
+                        },
+                        surface: {
+                            50: '#111111',
+                            100: '#1a1a1a',
+                            200: '#262626'
+                        }
+                    },
+                    animation: { 
+                        'blob': 'blob 10s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
                     keyframes: {
                         blob: {
-                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                            '100%': { transform: 'translate(0px, 0px) scale(1)' }
+                            '0%, 100%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(40px, -60px) scale(1.15)' },
+                            '66%': { transform: 'translate(-30px, 30px) scale(0.95)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' }
                         }
                     }
                 }
             }
         }
-    </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="bg-dark text-gray-200 font-sans antialiased overflow-x-hidden selection:bg-primary selection:text-white">
+<body class="bg-dark text-gray-200 font-sans antialiased overflow-x-hidden selection:bg-accent-primary selection:text-white">
 
-    <div class="fixed inset-0 z-0 pointer-events-none">
-        <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-primary/20 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob"></div>
-        <div class="absolute top-[20%] right-[-10%] w-96 h-96 bg-secondary/20 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-2000"></div>
-        <div class="absolute bottom-[-20%] left-[20%] w-96 h-96 bg-purple-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-4000"></div>
+    <!-- Custom Cursor -->
+    <div id="cursor" class="fixed w-8 h-8 rounded-full border border-accent-primary pointer-events-none z-[100] transition-transform duration-100 ease-out hidden md:block"></div>
+    <div id="cursor-dot" class="fixed w-1 h-1 bg-accent-primary rounded-full pointer-events-none z-[100] hidden md:block"></div>
+
+    <!-- Background Decoration -->
+    <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <div class="absolute -top-[10%] -left-[10%] w-[50vw] h-[50vw] bg-accent-primary/10 rounded-full mix-blend-screen filter blur-[120px] animate-blob"></div>
+        <div class="absolute top-[20%] -right-[10%] w-[45vw] h-[45vw] bg-accent-secondary/10 rounded-full mix-blend-screen filter blur-[120px] animate-blob [animation-delay:2s]"></div>
+        <div class="absolute -bottom-[20%] left-[20%] w-[40vw] h-[40vw] bg-accent-tertiary/10 rounded-full mix-blend-screen filter blur-[120px] animate-blob [animation-delay:4s]"></div>
+        <div class="noise-overlay absolute inset-0 opacity-[0.03]"></div>
     </div>
 
-    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-transparent py-4">
-        <div class="container mx-auto px-6 md:px-12 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold tracking-tighter text-white">HK<span class="text-primary">.</span></a>
-            <nav class="hidden md:flex space-x-8">
-                <a href="#home" class="text-gray-300 hover:text-white transition-colors text-sm font-medium uppercase tracking-wider relative group">Ana Sayfa<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span></a>
-                <a href="#about" class="text-gray-300 hover:text-white transition-colors text-sm font-medium uppercase tracking-wider relative group">Hakkımda<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span></a>
-                <a href="#skills" class="text-gray-300 hover:text-white transition-colors text-sm font-medium uppercase tracking-wider relative group">Yetenekler<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span></a>
-                <a href="#projects" class="text-gray-300 hover:text-white transition-colors text-sm font-medium uppercase tracking-wider relative group">Projeler<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span></a>
-                <a href="#certificates" class="text-gray-300 hover:text-white transition-colors text-sm font-medium uppercase tracking-wider relative group">Sertifikalar<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span></a>
-                <a href="#games" class="text-gray-300 hover:text-white transition-colors text-sm font-medium uppercase tracking-wider relative group">Oyunlar<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span></a>
-                <a href="#contact" class="text-gray-300 hover:text-white transition-colors text-sm font-medium uppercase tracking-wider relative group">İletişim<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span></a>
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-500 border-b border-transparent">
+        <div class="container mx-auto px-6 lg:px-12 flex justify-between items-center h-20">
+            <a href="#" class="text-2xl font-extrabold tracking-tighter text-white group">
+                <span class="inline-block group-hover:text-accent-primary transition-colors duration-300">H</span>
+                <span class="inline-block group-hover:text-accent-secondary transition-colors duration-300 -ml-1">K</span>
+                <span class="text-accent-primary">.</span>
+            </a>
+            <nav class="hidden md:flex items-center space-x-1">
+                <a href="#home" class="nav-link px-4 py-2 text-sm font-semibold text-gray-400 hover:text-white transition-all rounded-full">Ana Sayfa</a>
+                <a href="#about" class="nav-link px-4 py-2 text-sm font-semibold text-gray-400 hover:text-white transition-all rounded-full">Hakkımda</a>
+                <a href="#skills" class="nav-link px-4 py-2 text-sm font-semibold text-gray-400 hover:text-white transition-all rounded-full">Yetenekler</a>
+                <a href="#projects" class="nav-link px-4 py-2 text-sm font-semibold text-gray-400 hover:text-white transition-all rounded-full">Projeler</a>
+                <a href="#games" class="nav-link px-4 py-2 text-sm font-semibold text-gray-400 hover:text-white transition-all rounded-full">Oyunlar</a>
+                <a href="#contact" class="ml-4 px-6 py-2.5 bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-accent-primary/50 rounded-full text-sm font-bold transition-all backdrop-blur-sm">İletişim</a>
             </nav>
-            <button id="mobile-menu-btn" class="md:hidden text-gray-300 focus:outline-none"><i class="fas fa-bars text-2xl"></i></button>
+            <button id="mobile-menu-btn" class="md:hidden w-10 h-10 flex flex-col justify-center items-center space-y-1.5 focus:outline-none z-50">
+                <span class="w-6 h-0.5 bg-gray-300 rounded-full transition-all duration-300"></span>
+                <span class="w-6 h-0.5 bg-gray-300 rounded-full transition-all duration-300"></span>
+                <span class="w-6 h-0.5 bg-gray-300 rounded-full transition-all duration-300"></span>
+            </button>
         </div>
-        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-darker/95 backdrop-blur-md border-b border-gray-800 flex-col items-center py-6 space-y-4 shadow-xl">
-            <a href="#home" class="mobile-link text-gray-300 hover:text-white text-lg font-medium">Ana Sayfa</a>
-            <a href="#about" class="mobile-link text-gray-300 hover:text-white text-lg font-medium">Hakkımda</a>
-            <a href="#skills" class="mobile-link text-gray-300 hover:text-white text-lg font-medium">Yetenekler</a>
-            <a href="#projects" class="mobile-link text-gray-300 hover:text-white text-lg font-medium">Projeler</a>
-            <a href="#contact" class="mobile-link text-gray-300 hover:text-white text-lg font-medium">İletişim</a>
-            <a href="#games" class="mobile-link text-gray-300 hover:text-white text-lg font-medium">Oyunlar</a>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="fixed inset-0 bg-darker/95 backdrop-blur-xl z-40 translate-x-full transition-transform duration-500 flex flex-col items-center justify-center space-y-8">
+            <a href="#home" class="mobile-link text-3xl font-bold text-gray-400 hover:text-white transition-colors">Ana Sayfa</a>
+            <a href="#about" class="mobile-link text-3xl font-bold text-gray-400 hover:text-white transition-colors">Hakkımda</a>
+            <a href="#skills" class="mobile-link text-3xl font-bold text-gray-400 hover:text-white transition-colors">Yetenekler</a>
+            <a href="#projects" class="mobile-link text-3xl font-bold text-gray-400 hover:text-white transition-colors">Projeler</a>
+            <a href="#games" class="mobile-link text-3xl font-bold text-gray-400 hover:text-white transition-colors">Oyunlar</a>
+            <a href="#contact" class="mobile-link text-3xl font-bold text-gray-400 hover:text-white transition-colors">İletişim</a>
         </div>
     </header>
 
     <main class="relative z-10">
+
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+        <!-- Hero Section -->
         <section id="home" class="min-h-screen flex items-center justify-center pt-20">
-            <div class="container mx-auto px-6 md:px-12 flex flex-col items-center text-center">
-                <div class="reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
-                    <span class="text-primary font-medium tracking-widest uppercase mb-4 block">Merhaba, Ben</span>
-                    <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">Hüseyin <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Karacif</span></h1>
-                    <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">obilet'te Kıdemli Yazılım Geliştiricisi. .NET, React ve Mobil teknolojilerle modern ve yüksek performanslı çözümler inşa ediyorum.</p>
-                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a href="#projects" class="px-8 py-4 bg-primary hover:bg-indigo-600 text-white rounded-full font-semibold transition-all shadow-[0_0_20px_rgba(99,102,241,0.4)] hover:shadow-[0_0_30px_rgba(99,102,241,0.6)] transform hover:-translate-y-1">Projelerimi İncele</a>
-                        <a href="#contact" class="px-8 py-4 bg-transparent border border-gray-600 hover:border-white text-white rounded-full font-semibold transition-all transform hover:-translate-y-1">İletişime Geç</a>
+            <div class="container mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-left reveal">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-accent-primary/10 border border-accent-primary/20 text-accent-primary text-xs font-bold tracking-widest uppercase mb-6">
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-primary opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-accent-primary"></span>
+                        </span>
+                        <span>Müsaitlik: Yeni Projeler İçin Açık</span>
+                    </div>
+                    <h1 class="text-6xl md:text-8xl font-extrabold text-white mb-6 leading-[1.1] tracking-tighter">
+                        Kodla <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-primary via-accent-secondary to-accent-tertiary animate-gradient-x">Geleceği</span> İnşa Et.
+                    </h1>
+                    <p class="text-gray-400 text-lg md:text-xl max-w-xl mb-10 leading-relaxed font-medium">
+                        Ben <span class="text-white font-semibold">Hüseyin Karacif</span>. obilet'te Senior Software Developer olarak, modern teknolojilerle ölçeklenebilir ve kullanıcı odaklı dijital deneyimler geliştiriyorum.
+                    </p>
+                    <div class="flex flex-wrap gap-5">
+                        <a href="#projects" class="group relative px-8 py-4 bg-white text-black rounded-full font-bold overflow-hidden transition-all duration-300">
+                            <span class="relative z-10">Projeleri Gör</span>
+                            <div class="absolute inset-0 bg-accent-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                            <span class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 text-white transition-opacity duration-300">Projeleri Gör</span>
+                        </a>
+                        <a href="#contact" class="px-8 py-4 bg-transparent border border-white/20 hover:border-white text-white rounded-full font-bold transition-all flex items-center space-x-2">
+                            <span>İletişime Geç</span>
+                            <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </a>
                     </div>
                 </div>
+                <div class="relative hidden lg:block reveal [animation-delay:400ms]">
+                    <div class="relative z-10 w-full aspect-square rounded-3xl overflow-hidden border border-white/10 bg-surface-100 group">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Hüseyin Karacif" class="w-full h-full object-cover grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent opacity-60"></div>
+                        <div class="absolute bottom-8 left-8 right-8 p-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 rounded-full bg-accent-primary flex items-center justify-center text-white">
+                                    <i class="fas fa-terminal"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-bold">Kıdemli Yazılım Geliştirici</h4>
+                                    <p class="text-gray-400 text-sm">.NET & React Expert</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Decorative Elements -->
+                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-accent-secondary/20 rounded-full blur-2xl animate-pulse-slow"></div>
+                    <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-accent-primary/20 rounded-full blur-2xl animate-pulse-slow [animation-delay:2s]"></div>
+                </div>
             </div>
-            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce cursor-pointer" onclick="document.getElementById('about').scrollIntoView()">
-                <span class="text-xs text-gray-500 uppercase tracking-widest mb-2">Aşağı Kaydır</span>
-                <i class="fas fa-chevron-down text-gray-400"></i>
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 reveal opacity-0 animate-bounce">
+                <a href="#about" class="flex flex-col items-center text-gray-500 hover:text-white transition-colors">
+                    <span class="text-[10px] uppercase tracking-[0.2em] mb-2 font-bold">Keşfet</span>
+                    <i class="fas fa-mouse text-xl"></i>
+                </a>
             </div>
         </section>
 
-        <section id="about" class="py-24 bg-darker/50">
-            <div class="container mx-auto px-6 md:px-12">
-                <div class="reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out mb-16 text-center">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Hakkımda</h2>
-                    <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
-                </div>
-                <div class="flex flex-col md:flex-row gap-12 items-center">
-                    <div class="w-full md:w-1/2 reveal opacity-0 translate-y-8 transition-all duration-1000 delay-200 ease-out">
-                        <div class="relative rounded-2xl overflow-hidden group">
-                            <div class="absolute inset-0 bg-gradient-to-t from-darker to-transparent z-10 opacity-60"></div>
-                            <img src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Hüseyin Karacif" class="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105 filter grayscale group-hover:grayscale-0">
-                            <div class="absolute bottom-0 left-0 p-8 z-20">
-                                <h3 class="text-2xl font-bold text-white">Yaratıcı Kodlama</h3>
-                                <p class="text-gray-300">Tasarımı kodla buluşturan detaylar.</p>
+        <!-- About Section -->
+        <section id="about" class="py-32 relative overflow-hidden">
+            <div class="container mx-auto px-6 lg:px-12">
+                <div class="grid lg:grid-cols-2 gap-20 items-center">
+                    <div class="order-2 lg:order-1 reveal">
+                        <div class="inline-block text-accent-primary font-bold tracking-widest uppercase mb-4 text-sm">Kısaca Ben</div>
+                        <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-8 tracking-tighter">Tutkuyla Geliştiriyor, <br>Tecrübeyle Çözüyorum.</h2>
+                        <div class="space-y-6 text-gray-400 text-lg leading-relaxed">
+                            <p>
+                                Merhaba! Ben <span class="text-white">Hüseyin Karacif</span>. Kariyer yolculuğumda karmaşık problemleri zarif çözümlere dönüştürmeyi ilke edindim. Balıkesir Üniversitesi mezuniyetimin ardından, yazılım dünyasının dinamik yapısına hızla adapte oldum.
+                            </p>
+                            <p>
+                                Şu anda <span class="text-white">obilet</span> bünyesinde Kıdemli Yazılım Geliştirici olarak görev alıyorum. .NET Core mimarilerinden React'ın interaktif dünyasına, mobil platformlardan AI entegrasyonlarına kadar geniş bir yelpazede değer üretiyorum.
+                            </p>
+                            <div class="grid grid-cols-2 gap-8 pt-6">
+                                <div>
+                                    <div class="text-4xl font-black text-white mb-1">8+</div>
+                                    <div class="text-xs text-accent-primary font-bold uppercase tracking-widest">Yıl Deneyim</div>
+                                </div>
+                                <div>
+                                    <div class="text-4xl font-black text-white mb-1">50+</div>
+                                    <div class="text-xs text-accent-secondary font-bold uppercase tracking-widest">Başarılı Proje</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="w-full md:w-1/2 reveal opacity-0 translate-y-8 transition-all duration-1000 delay-300 ease-out space-y-6">
-                        <h3 class="text-2xl font-semibold text-white">Kıdemli Yazılım Geliştiricisi</h3>
-                        <p class="text-gray-400 leading-relaxed text-lg">Ben Hüseyin Karacif. obilet bünyesinde Kıdemli Yazılım Geliştirici (Senior Software Developer) olarak görev alıyorum. .NET ekosistemi, React ve mobil uygulama geliştirme (Flutter/React Native) alanlarında uzmanlığım bulunuyor. Karmaşık iş problemlerini modern teknolojilerle çözmeyi ve kullanıcı deneyimini ön planda tutan yüksek performanslı uygulamalar geliştirmeyi seviyorum.</p>
-                        <p class="text-gray-400 leading-relaxed text-lg">Son zamanlarda AI destekli yazılım geliştirme süreçlerine ve Claude Code gibi araçlara yoğunlaşıyorum. Balıkesir Üniversitesi'nden mezun olduktan sonra kendimi sürekli geliştirerek sektörde sağlam bir yer edindim.</p>
-                        <div class="grid grid-cols-2 gap-6 pt-4">
-                            <div><h4 class="text-primary font-bold text-3xl mb-1">8+</h4><p class="text-sm text-gray-500 uppercase tracking-wider">Yıllık Deneyim</p></div>
-                            <div><h4 class="text-primary font-bold text-3xl mb-1">50+</h4><p class="text-sm text-gray-500 uppercase tracking-wider">Tamamlanan Proje</p></div>
+                    <div class="order-1 lg:order-2 relative reveal [animation-delay:300ms]">
+                        <div class="relative bg-surface-50 border border-white/5 rounded-[40px] p-8 md:p-12 overflow-hidden group">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-accent-primary/10 rounded-bl-full translate-x-10 -translate-y-10 group-hover:translate-x-5 group-hover:-translate-y-5 transition-transform duration-700"></div>
+                            <div class="relative z-10 flex flex-col space-y-8">
+                                <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center text-3xl">
+                                    🚀
+                                </div>
+                                <h3 class="text-2xl font-bold text-white">Vizyonum</h3>
+                                <p class="text-gray-400">Sadece çalışan değil, yaşayan ve değer katan yazılımlar üretmek. Teknolojiyi bir amaç değil, hayatı kolaylaştıran güçlü bir araç olarak kullanmak.</p>
+                                <div class="flex space-x-4">
+                                    <a href="#" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-accent-primary hover:border-accent-primary transition-all text-white"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-accent-secondary hover:border-accent-secondary transition-all text-white"><i class="fab fa-github"></i></a>
+                                    <a href="#" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-accent-tertiary hover:border-accent-tertiary transition-all text-white"><i class="fab fa-medium-m"></i></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="skills" class="py-24">
-            <div class="container mx-auto px-6 md:px-12">
-                <div class="reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out mb-16 text-center">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Uzmanlık Alanlarım</h2>
-                    <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
-                    <p class="text-gray-400 mt-6 max-w-2xl mx-auto">Kullandığım teknolojiler ve yetkinliklerim.</p>
-                </div>
-                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-                    <div class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-[100ms] ease-out bg-darker/80 border border-gray-800 rounded-xl p-6 flex flex-col items-center justify-center hover:border-primary/50 hover:bg-gray-900 transition-all group">
-                        <i class="fab fa-microsoft text-4xl text-gray-500 group-hover:text-blue-500 transition-colors mb-3"></i><span class="text-gray-300 font-medium">.NET Core</span>
-                    </div>
-                    <div class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-[200ms] ease-out bg-darker/80 border border-gray-800 rounded-xl p-6 flex flex-col items-center justify-center hover:border-primary/50 hover:bg-gray-900 transition-all group">
-                        <i class="fab fa-react text-4xl text-gray-500 group-hover:text-cyan-400 transition-colors mb-3"></i><span class="text-gray-300 font-medium">React / RN</span>
-                    </div>
-                    <div class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-[300ms] ease-out bg-darker/80 border border-gray-800 rounded-xl p-6 flex flex-col items-center justify-center hover:border-primary/50 hover:bg-gray-900 transition-all group">
-                        <i class="fab fa-js text-4xl text-gray-500 group-hover:text-yellow-400 transition-colors mb-3"></i><span class="text-gray-300 font-medium">JavaScript</span>
-                    </div>
-                    <div class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-[400ms] ease-out bg-darker/80 border border-gray-800 rounded-xl p-6 flex flex-col items-center justify-center hover:border-primary/50 hover:bg-gray-900 transition-all group">
-                        <i class="fas fa-mobile-alt text-4xl text-gray-500 group-hover:text-blue-400 transition-colors mb-3"></i><span class="text-gray-300 font-medium">Flutter</span>
-                    </div>
-                    <div class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-[500ms] ease-out bg-darker/80 border border-gray-800 rounded-xl p-6 flex flex-col items-center justify-center hover:border-primary/50 hover:bg-gray-900 transition-all group">
-                        <i class="fas fa-database text-4xl text-gray-500 group-hover:text-orange-500 transition-colors mb-3"></i><span class="text-gray-300 font-medium">MSSQL</span>
-                    </div>
-                    <div class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-[600ms] ease-out bg-darker/80 border border-gray-800 rounded-xl p-6 flex flex-col items-center justify-center hover:border-primary/50 hover:bg-gray-900 transition-all group">
-                        <svg class="w-10 h-10 text-gray-500 group-hover:text-cyan-400 transition-colors mb-3" viewBox="0 0 24 24" fill="currentColor"><path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"/></svg>
-                        <span class="text-gray-300 font-medium">Tailwind</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="py-24 bg-darker/50">
-            <div class="container mx-auto px-6 md:px-12">
-                <div class="reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out mb-16 text-center">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Öne Çıkan Projeler</h2>
-                    <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="reveal opacity-0 translate-y-8 transition-all duration-1000 delay-100 ease-out bg-dark rounded-2xl overflow-hidden border border-gray-800 hover:border-primary/50 transition-all group shadow-lg">
-                        <div class="relative h-60 overflow-hidden">
-                            <div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-all z-10"></div>
-                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="E-Ticaret" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
-                        </div>
-                        <div class="p-6">
-                            <div class="flex gap-2 mb-4">
-                                <span class="text-xs font-semibold bg-primary/10 text-primary px-3 py-1 rounded-full">React</span>
-                                <span class="text-xs font-semibold bg-primary/10 text-primary px-3 py-1 rounded-full">Tailwind</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">DYS - Depo Yönetim Sistemi</h3>
-                            <p class="text-gray-400 text-sm mb-4 line-clamp-3">Nebim V3 ERP entegrasyonlu, kullanıcı odaklı ve yüksek performanslı depo yönetim sistemi. Envanter takibi ve sevkiyat süreçlerini optimize eder.</p>
-                            <a href="https://github.com/huseyinkaracif" class="inline-flex items-center text-sm font-medium text-white hover:text-primary transition-colors">Projeyi İncele <i class="fas fa-arrow-right ml-2 text-xs"></i></a>
-                        </div>
-                    </div>
-                    <div class="reveal opacity-0 translate-y-8 transition-all duration-1000 delay-200 ease-out bg-dark rounded-2xl overflow-hidden border border-gray-800 hover:border-secondary/50 transition-all group shadow-lg">
-                        <div class="relative h-60 overflow-hidden">
-                            <div class="absolute inset-0 bg-secondary/20 group-hover:bg-transparent transition-all z-10"></div>
-                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dashboard" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
-                        </div>
-                        <div class="p-6">
-                            <div class="flex gap-2 mb-4">
-                                <span class="text-xs font-semibold bg-secondary/10 text-secondary px-3 py-1 rounded-full">Vue.js</span>
-                                <span class="text-xs font-semibold bg-secondary/10 text-secondary px-3 py-1 rounded-full">SCSS</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-secondary transition-colors">ai-blog-team</h3>
-                            <p class="text-gray-400 text-sm mb-4 line-clamp-3">Yapay zeka ajanları kullanarak içerik üreten ve yöneten yenilikçi bir blog otomasyon sistemi.</p>
-                            <a href="https://github.com/huseyinkaracif/ai-blog-team" class="inline-flex items-center text-sm font-medium text-white hover:text-secondary transition-colors">Projeyi İncele <i class="fas fa-arrow-right ml-2 text-xs"></i></a>
-                        </div>
-                    </div>
-                    <div class="reveal opacity-0 translate-y-8 transition-all duration-1000 delay-300 ease-out bg-dark rounded-2xl overflow-hidden border border-gray-800 hover:border-purple-500/50 transition-all group shadow-lg">
-                        <div class="relative h-60 overflow-hidden">
-                            <div class="absolute inset-0 bg-purple-500/20 group-hover:bg-transparent transition-all z-10"></div>
-                            <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Portfolio" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
-                        </div>
-                        <div class="p-6">
-                            <div class="flex gap-2 mb-4">
-                                <span class="text-xs font-semibold bg-purple-500/10 text-purple-400 px-3 py-1 rounded-full">HTML5</span>
-                                <span class="text-xs font-semibold bg-purple-500/10 text-purple-400 px-3 py-1 rounded-full">GSAP</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">KanbanBoard</h3>
-                            <p class="text-gray-400 text-sm mb-4 line-clamp-3">N-Tier mimari ve OOP prensipleriyle geliştirilmiş, görev takibi ve yönetimi sağlayan masaüstü uygulaması. (C#, MSSQL)</p>
-                            <a href="https://github.com/huseyinkaracif" class="inline-flex items-center text-sm font-medium text-white hover:text-purple-400 transition-colors">Projeyi İncele <i class="fas fa-arrow-right ml-2 text-xs"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        <section id="games" class="py-24 bg-dark">
-            <div class="container mx-auto px-6 md:px-12">
-                <div class="reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out mb-16 text-center">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Oyunlar</h2>
-                    <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
-                    <p class="text-gray-400 mt-6 max-w-2xl mx-auto">Sıkıldığında oynaman için birkaç küçük oyun hazırladım.</p>
+        <!-- Skills Section -->
+        <section id="skills" class="py-32 bg-surface-50/30">
+            <div class="container mx-auto px-6 lg:px-12">
+                <div class="text-center max-w-3xl mx-auto mb-20 reveal">
+                    <div class="text-accent-secondary font-bold tracking-widest uppercase mb-4 text-sm">Yetenek Seti</div>
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tighter">Teknoloji Radarım</h2>
+                    <p class="text-gray-400 text-lg">Modern web ve mobil ekosisteminde uzmanlaştığım anahtar teknolojiler.</p>
                 </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-                    <!-- Game Cards -->
-                    <div onclick="openGame('snake')" class="reveal opacity-0 translate-y-8 transition-all duration-1000 delay-100 ease-out bg-darker border border-gray-800 rounded-2xl p-8 hover:border-primary/50 hover:bg-gray-900 transition-all cursor-pointer group text-center">
-                        <i class="fas fa-staff-snake text-4xl text-primary mb-4 block group-hover:scale-110 transition-transform"></i>
-                        <h3 class="text-xl font-bold text-white mb-2">Yılan (Snake)</h3>
-                        <p class="text-gray-500 text-sm">Klasik yılan oyunu. Kendini yemeden büyü!</p>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 reveal">
+                    <!-- Skill Card -->
+                    <div class="skill-card group bg-surface-50 border border-white/5 p-8 rounded-3xl flex flex-col items-center justify-center hover:border-accent-primary/50 transition-all duration-500 hover:-translate-y-2">
+                        <div class="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:bg-accent-primary/10 transition-colors">
+                            <i class="fab fa-microsoft text-3xl text-gray-500 group-hover:text-blue-500 transition-colors"></i>
+                        </div>
+                        <span class="text-white font-bold tracking-tight">.NET Core</span>
+                        <div class="mt-2 w-full bg-white/5 h-1 rounded-full overflow-hidden">
+                            <div class="bg-accent-primary h-full w-[95%]"></div>
+                        </div>
                     </div>
-                    
-                    <div onclick="openGame('tictactoe')" class="reveal opacity-0 translate-y-8 transition-all duration-1000 delay-200 ease-out bg-darker border border-gray-800 rounded-2xl p-8 hover:border-secondary/50 hover:bg-gray-900 transition-all cursor-pointer group text-center">
-                        <i class="fas fa-times text-4xl text-secondary mb-4 block group-hover:scale-110 transition-transform"></i>
-                        <h3 class="text-xl font-bold text-white mb-2">Tic-Tac-Toe</h3>
-                        <p class="text-gray-500 text-sm">Üçlü dizeyi ilk sen yap, oyunu kazan.</p>
+                    <!-- Skill Card -->
+                    <div class="skill-card group bg-surface-50 border border-white/5 p-8 rounded-3xl flex flex-col items-center justify-center hover:border-accent-secondary/50 transition-all duration-500 hover:-translate-y-2">
+                        <div class="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:bg-accent-secondary/10 transition-colors">
+                            <i class="fab fa-react text-3xl text-gray-500 group-hover:text-cyan-400 transition-colors"></i>
+                        </div>
+                        <span class="text-white font-bold tracking-tight">React / RN</span>
+                        <div class="mt-2 w-full bg-white/5 h-1 rounded-full overflow-hidden">
+                            <div class="bg-accent-secondary h-full w-[90%]"></div>
+                        </div>
                     </div>
-                    
-                    <div onclick="openGame('memory')" class="reveal opacity-0 translate-y-8 transition-all duration-1000 delay-300 ease-out bg-darker border border-gray-800 rounded-2xl p-8 hover:border-purple-500/50 hover:bg-gray-900 transition-all cursor-pointer group text-center">
-                        <i class="fas fa-brain text-4xl text-purple-400 mb-4 block group-hover:scale-110 transition-transform"></i>
-                        <h3 class="text-xl font-bold text-white mb-2">Hafıza Oyunu</h3>
-                        <p class="text-gray-500 text-sm">Eşleşen kartları bul ve hafızanı test et.</p>
+                    <!-- Skill Card -->
+                    <div class="skill-card group bg-surface-50 border border-white/5 p-8 rounded-3xl flex flex-col items-center justify-center hover:border-accent-tertiary/50 transition-all duration-500 hover:-translate-y-2">
+                        <div class="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:bg-accent-tertiary/10 transition-colors">
+                            <i class="fab fa-js text-3xl text-gray-500 group-hover:text-yellow-400 transition-colors"></i>
+                        </div>
+                        <span class="text-white font-bold tracking-tight">JavaScript</span>
+                        <div class="mt-2 w-full bg-white/5 h-1 rounded-full overflow-hidden">
+                            <div class="bg-accent-tertiary h-full w-[92%]"></div>
+                        </div>
                     </div>
-                    
-                    <div onclick="openGame('pong')" class="reveal opacity-0 translate-y-8 transition-all duration-1000 delay-400 ease-out bg-darker border border-gray-800 rounded-2xl p-8 hover:border-primary/50 hover:bg-gray-900 transition-all cursor-pointer group text-center">
-                        <i class="fas fa-table-tennis-paddle-ball text-4xl text-primary mb-4 block group-hover:scale-110 transition-transform"></i>
-                        <h3 class="text-xl font-bold text-white mb-2">Ping Pong</h3>
-                        <p class="text-gray-500 text-sm">Klasik atari tenis oyunu. Topu kaçırma!</p>
-                    </div>
-                    
-                    <div onclick="openGame('minesweeper')" class="reveal opacity-0 translate-y-8 transition-all duration-1000 delay-500 ease-out bg-darker border border-gray-800 rounded-2xl p-8 hover:border-secondary/50 hover:bg-gray-900 transition-all cursor-pointer group text-center">
-                        <i class="fas fa-bomb text-4xl text-secondary mb-4 block group-hover:scale-110 transition-transform"></i>
-                        <h3 class="text-xl font-bold text-white mb-2">Mayın Tarlası</h3>
-                        <p class="text-gray-500 text-sm">Mayınlara basmadan tüm alanı temizle.</p>
-                    </div>
-                </div>
 
-                <!-- Game Modal/Container -->
-                <div id="game-container" class="hidden fixed inset-0 z-[100] bg-darker/95 backdrop-blur-md flex flex-col items-center justify-center p-4">
-                    <div class="relative w-full max-w-2xl bg-dark border border-gray-800 rounded-3xl p-6 shadow-2xl overflow-hidden">
-                        <button onclick="closeGame()" class="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors z-50">
-                            <i class="fas fa-times text-2xl"></i>
-                        </button>
-                        
-                        <div id="game-canvas-wrapper" class="w-full flex flex-col items-center">
-                            <!-- Game content will be injected here -->
+                    <!-- Skill Card -->
+                    <div class="skill-card group bg-surface-50 border border-white/5 p-8 rounded-3xl flex flex-col items-center justify-center hover:border-blue-400/50 transition-all duration-500 hover:-translate-y-2">
+                        <div class="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:bg-blue-400/10 transition-colors">
+                            <i class="fas fa-mobile-alt text-3xl text-gray-500 group-hover:text-blue-400 transition-colors"></i>
+                        </div>
+                        <span class="text-white font-bold tracking-tight">Flutter</span>
+                        <div class="mt-2 w-full bg-white/5 h-1 rounded-full overflow-hidden">
+                            <div class="bg-blue-400 h-full w-[85%]"></div>
+                        </div>
+                    </div>
+                    <!-- Skill Card -->
+                    <div class="skill-card group bg-surface-50 border border-white/5 p-8 rounded-3xl flex flex-col items-center justify-center hover:border-orange-500/50 transition-all duration-500 hover:-translate-y-2">
+                        <div class="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:bg-orange-500/10 transition-colors">
+                            <i class="fas fa-database text-3xl text-gray-500 group-hover:text-orange-500 transition-colors"></i>
+                        </div>
+                        <span class="text-white font-bold tracking-tight">SQL Server</span>
+                        <div class="mt-2 w-full bg-white/5 h-1 rounded-full overflow-hidden">
+                            <div class="bg-orange-500 h-full w-[88%]"></div>
+                        </div>
+                    </div>
+                    <!-- Skill Card -->
+                    <div class="skill-card group bg-surface-50 border border-white/5 p-8 rounded-3xl flex flex-col items-center justify-center hover:border-accent-primary/50 transition-all duration-500 hover:-translate-y-2">
+                        <div class="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:bg-accent-primary/10 transition-colors">
+                            <svg class="w-8 h-8 text-gray-500 group-hover:text-cyan-400 transition-colors" viewBox="0 0 24 24" fill="currentColor"><path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"/></svg>
+                        </div>
+                        <span class="text-white font-bold tracking-tight">Tailwind</span>
+                        <div class="mt-2 w-full bg-white/5 h-1 rounded-full overflow-hidden">
+                            <div class="bg-cyan-400 h-full w-[95%]"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        </section>
-
-        <section id="certificates" class="py-24 bg-dark">
-            <div class="container mx-auto px-6 md:px-12">
-                <div class="reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out mb-16 text-center">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Sertifikalar</h2>
-                    <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
+        <!-- Projects Section -->
+        <section id="projects" class="py-32 overflow-hidden">
+            <div class="container mx-auto px-6 lg:px-12">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 reveal">
+                    <div>
+                        <div class="text-accent-tertiary font-bold tracking-widest uppercase mb-4 text-sm">Portfolyo</div>
+                        <h2 class="text-4xl md:text-5xl font-extrabold text-white tracking-tighter">Seçkin Projeler</h2>
+                    </div>
+                    <a href="https://github.com/huseyinkaracif" class="mt-6 md:mt-0 text-gray-400 hover:text-white font-bold flex items-center space-x-2 group">
+                        <span>Tümünü GitHub'da Gör</span>
+                        <i class="fab fa-github text-xl group-hover:rotate-12 transition-transform"></i>
+                    </a>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-[100ms] ease-out bg-darker border border-gray-800 rounded-xl p-6 hover:border-primary/50 transition-all">
-                        <i class="fas fa-certificate text-primary text-2xl mb-4"></i>
-                        <h4 class="text-white font-bold mb-2">C# .Net Core Bootcamp</h4>
-                        <p class="text-gray-500 text-sm">Kodluyoruz (2020)</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project Card -->
+                    <div class="project-card group reveal bg-surface-50 border border-white/5 rounded-[32px] overflow-hidden hover:border-accent-primary/30 transition-all duration-500">
+                        <div class="relative h-72 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="DYS" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/20 to-transparent opacity-80"></div>
+                            <div class="absolute bottom-6 left-6 right-6 flex justify-between items-center translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                                <div class="flex gap-2">
+                                    <span class="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] font-bold text-white uppercase tracking-wider border border-white/10">React</span>
+                                    <span class="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] font-bold text-white uppercase tracking-wider border border-white/10">.NET</span>
+                                </div>
+                                <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-dark hover:bg-accent-primary hover:text-white transition-colors"><i class="fas fa-external-link-alt text-sm"></i></a>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-accent-primary transition-colors">DYS - Depo Yönetim Sistemi</h3>
+                            <p class="text-gray-400 line-clamp-2 text-sm leading-relaxed mb-6">Nebim V3 ERP entegrasyonlu, yüksek performanslı depo yönetim sistemi. Envanter takibi ve sevkiyat süreçlerini optimize eder.</p>
+                            <div class="w-full h-px bg-white/5 mb-6"></div>
+                            <a href="https://github.com/huseyinkaracif" class="text-xs font-black uppercase tracking-widest text-accent-primary flex items-center group/link">
+                                Detayları İncele <i class="fas fa-chevron-right ml-2 group-hover/link:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
                     </div>
-                    <div class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-[200ms] ease-out bg-darker border border-gray-800 rounded-xl p-6 hover:border-primary/50 transition-all">
-                        <i class="fas fa-certificate text-primary text-2xl mb-4"></i>
-                        <h4 class="text-white font-bold mb-2">Programming in HTML5 with JS & CSS3</h4>
-                        <p class="text-gray-500 text-sm">Microsoft (2019)</p>
+
+                    <!-- Project Card -->
+                    <div class="project-card group reveal [animation-delay:200ms] bg-surface-50 border border-white/5 rounded-[32px] overflow-hidden hover:border-accent-secondary/30 transition-all duration-500">
+                        <div class="relative h-72 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="AI Blog" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/20 to-transparent opacity-80"></div>
+                            <div class="absolute bottom-6 left-6 right-6 flex justify-between items-center translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                                <div class="flex gap-2">
+                                    <span class="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] font-bold text-white uppercase tracking-wider border border-white/10">Python</span>
+                                    <span class="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] font-bold text-white uppercase tracking-wider border border-white/10">AI</span>
+                                </div>
+                                <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-dark hover:bg-accent-secondary hover:text-white transition-colors"><i class="fas fa-external-link-alt text-sm"></i></a>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-accent-secondary transition-colors">ai-blog-team</h3>
+                            <p class="text-gray-400 line-clamp-2 text-sm leading-relaxed mb-6">Yapay zeka ajanları kullanarak içerik üreten ve yöneten yenilikçi bir blog otomasyon sistemi.</p>
+                            <div class="w-full h-px bg-white/5 mb-6"></div>
+                            <a href="https://github.com/huseyinkaracif/ai-blog-team" class="text-xs font-black uppercase tracking-widest text-accent-secondary flex items-center group/link">
+                                Detayları İncele <i class="fas fa-chevron-right ml-2 group-hover/link:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
                     </div>
-                    <div class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-[300ms] ease-out bg-darker border border-gray-800 rounded-xl p-6 hover:border-primary/50 transition-all">
-                        <i class="fas fa-certificate text-primary text-2xl mb-4"></i>
-                        <h4 class="text-white font-bold mb-2">Yazılım Uzmanlığı</h4>
-                        <p class="text-gray-500 text-sm">Millî Eğitim Bakanlığı (2019)</p>
-                    </div>
-                    <div class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-[400ms] ease-out bg-darker border border-gray-800 rounded-xl p-6 hover:border-primary/50 transition-all">
-                        <i class="fas fa-certificate text-primary text-2xl mb-4"></i>
-                        <h4 class="text-white font-bold mb-2">Yazılım ve Veritabanı Uzmanlığı</h4>
-                        <p class="text-gray-500 text-sm">BilgeAdam (2019)</p>
+
+                    <!-- Project Card -->
+                    <div class="project-card group reveal [animation-delay:400ms] bg-surface-50 border border-white/5 rounded-[32px] overflow-hidden hover:border-accent-tertiary/30 transition-all duration-500">
+                        <div class="relative h-72 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Kanban" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/20 to-transparent opacity-80"></div>
+                            <div class="absolute bottom-6 left-6 right-6 flex justify-between items-center translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                                <div class="flex gap-2">
+                                    <span class="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] font-bold text-white uppercase tracking-wider border border-white/10">C#</span>
+                                    <span class="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] font-bold text-white uppercase tracking-wider border border-white/10">SQL</span>
+                                </div>
+                                <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-dark hover:bg-accent-tertiary hover:text-white transition-colors"><i class="fas fa-external-link-alt text-sm"></i></a>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-accent-tertiary transition-colors">KanbanBoard</h3>
+                            <p class="text-gray-400 line-clamp-2 text-sm leading-relaxed mb-6">N-Tier mimari ve OOP prensipleriyle geliştirilmiş, gelişmiş görev takibi ve yönetimi sağlayan uygulama.</p>
+                            <div class="w-full h-px bg-white/5 mb-6"></div>
+                            <a href="https://github.com/huseyinkaracif" class="text-xs font-black uppercase tracking-widest text-accent-tertiary flex items-center group/link">
+                                Detayları İncele <i class="fas fa-chevron-right ml-2 group-hover/link:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="py-24 relative overflow-hidden">
-            <div class="container mx-auto px-6 md:px-12 relative z-10">
-                <div class="reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out mb-16 text-center">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">İletişime Geçin</h2>
-                    <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
-                    <p class="text-gray-400 mt-6 max-w-2xl mx-auto">Yeni bir proje fikriniz mi var? Beraber çalışmak veya sadece merhaba demek için mesaj gönderin.</p>
+        <!-- Games Section -->
+        <section id="games" class="py-32 bg-surface-100 relative overflow-hidden">
+            <div class="container mx-auto px-6 lg:px-12 text-center reveal">
+                <div class="text-accent-primary font-bold tracking-widest uppercase mb-4 text-sm">Mola Zamanı</div>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-8 tracking-tighter">Biraz Oyun Oynayalım mı?</h2>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto mb-16">Kod yazmaktan sıkıldığında senin için hazırladığım mini oyunlarla kafa dağıtabilirsin.</p>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                    <button onclick="openGame('snake')" class="game-btn group bg-dark/40 border border-white/5 p-8 rounded-[32px] flex flex-col items-center justify-center hover:bg-accent-primary/10 hover:border-accent-primary/30 transition-all duration-500">
+                        <i class="fas fa-staff-snake text-4xl text-gray-500 group-hover:text-accent-primary transition-colors mb-4"></i>
+                        <span class="text-white font-bold text-sm">Snake</span>
+                    </button>
+                    <button onclick="openGame('tictactoe')" class="game-btn group bg-dark/40 border border-white/5 p-8 rounded-[32px] flex flex-col items-center justify-center hover:bg-accent-secondary/10 hover:border-accent-secondary/30 transition-all duration-500">
+                        <i class="fas fa-times text-4xl text-gray-500 group-hover:text-accent-secondary transition-colors mb-4"></i>
+                        <span class="text-white font-bold text-sm">Tic-Tac-Toe</span>
+                    </button>
+                    <button onclick="openGame('memory')" class="game-btn group bg-dark/40 border border-white/5 p-8 rounded-[32px] flex flex-col items-center justify-center hover:bg-accent-tertiary/10 hover:border-accent-tertiary/30 transition-all duration-500">
+                        <i class="fas fa-brain text-4xl text-gray-500 group-hover:text-accent-tertiary transition-colors mb-4"></i>
+                        <span class="text-white font-bold text-sm">Memory</span>
+                    </button>
+                    <button onclick="openGame('pong')" class="game-btn group bg-dark/40 border border-white/5 p-8 rounded-[32px] flex flex-col items-center justify-center hover:bg-blue-400/10 hover:border-blue-400/30 transition-all duration-500">
+                        <i class="fas fa-table-tennis-paddle-ball text-4xl text-gray-500 group-hover:text-blue-400 transition-colors mb-4"></i>
+                        <span class="text-white font-bold text-sm">Pong</span>
+                    </button>
+                    <button onclick="openGame('minesweeper')" class="game-btn group bg-dark/40 border border-white/5 p-8 rounded-[32px] flex flex-col items-center justify-center hover:bg-red-400/10 hover:border-red-400/30 transition-all duration-500">
+                        <i class="fas fa-bomb text-4xl text-gray-500 group-hover:text-red-400 transition-colors mb-4"></i>
+                        <span class="text-white font-bold text-sm">Mines</span>
+                    </button>
                 </div>
-                <div class="max-w-4xl mx-auto bg-darker/80 border border-gray-800 rounded-2xl p-8 md:p-12 shadow-2xl backdrop-blur-sm reveal opacity-0 translate-y-8 transition-all duration-1000 delay-200 ease-out">
-                    <form class="space-y-6" onsubmit="event.preventDefault(); alert('Mesajınız başarıyla gönderildi!');">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="name" class="block text-sm font-medium text-gray-400 mb-2">İsim</label>
-                                <input type="text" id="name" class="w-full bg-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="Adınız Soyadınız" required>
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-gray-400 mb-2">E-posta</label>
-                                <input type="email" id="email" class="w-full bg-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="ornek@email.com" required>
-                            </div>
-                        </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-32">
+            <div class="container mx-auto px-6 lg:px-12">
+                <div class="bg-gradient-to-br from-surface-100 to-dark border border-white/5 rounded-[48px] p-8 md:p-20 relative overflow-hidden reveal">
+                    <div class="absolute top-0 right-0 w-1/2 h-full bg-accent-primary/5 filter blur-3xl rounded-full"></div>
+                    <div class="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
                         <div>
-                            <label for="subject" class="block text-sm font-medium text-gray-400 mb-2">Konu</label>
-                            <input type="text" id="subject" class="w-full bg-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="Mesajınızın konusu" required>
+                            <h2 class="text-5xl md:text-6xl font-black text-white mb-8 tracking-tighter leading-tight">Bir Sonraki <br>Harika Projeyi <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-primary to-accent-secondary">Beraber</span> Kuralım.</h2>
+                            <p class="text-gray-400 text-lg mb-12 max-w-md">Sorularınız, iş teklifleriniz veya sadece merhaba demek için bana her zaman ulaşabilirsiniz.</p>
+                            <div class="space-y-6">
+                                <a href="mailto:huseyinkaracif@gmail.com" class="flex items-center space-x-4 group">
+                                    <div class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center group-hover:bg-accent-primary transition-all">
+                                        <i class="fas fa-envelope text-white"></i>
+                                    </div>
+                                    <span class="text-xl font-bold text-white group-hover:text-accent-primary transition-colors">huseyinkaracif@gmail.com</span>
+                                </a>
+                                <div class="flex items-center space-x-4 group">
+                                    <div class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center group-hover:bg-accent-secondary transition-all">
+                                        <i class="fas fa-map-marker-alt text-white"></i>
+                                    </div>
+                                    <span class="text-xl font-bold text-white">Istanbul, Türkiye</span>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-gray-400 mb-2">Mesaj</label>
-                            <textarea id="message" rows="5" class="w-full bg-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none" placeholder="Mesajınızı buraya yazın..." required></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-gradient-to-r from-primary to-secondary hover:from-indigo-600 hover:to-pink-600 text-white font-bold py-4 rounded-lg transition-all shadow-lg transform hover:-translate-y-1">
-                            Mesaj Gönder
-                        </button>
-                    </form>
+                        <form class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <input type="text" placeholder="Adınız" class="bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-gray-600 focus:outline-none focus:border-accent-primary transition-all">
+                                <input type="email" placeholder="E-posta Adresiniz" class="bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-gray-600 focus:outline-none focus:border-accent-primary transition-all">
+                            </div>
+                            <input type="text" placeholder="Konu" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-gray-600 focus:outline-none focus:border-accent-primary transition-all">
+                            <textarea rows="4" placeholder="Mesajınız" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-gray-600 focus:outline-none focus:border-accent-primary transition-all"></textarea>
+                            <button class="w-full py-5 bg-white text-dark font-black rounded-2xl hover:bg-accent-primary hover:text-white transition-all duration-300">GÖNDER</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-darker border-t border-gray-900 py-12">
-        <div class="container mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="text-2xl font-bold tracking-tighter text-white">HK<span class="text-primary">.</span></div>
-            <div class="flex space-x-6">
-                <a href="https://github.com/huseyinkaracif" target="_blank" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary transition-all"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/huseyin-karacif/" target="_blank" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#0077b5] transition-all"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://twitter.com/huseyinkaracif" target="_blank" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#1DA1F2] transition-all"><i class="fab fa-twitter"></i></a>
-                <a href="https://huseyinkaracif.com" target="_blank" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:text-white hover:bg-secondary transition-all"><i class="fas fa-globe"></i></a>
+    <footer class="py-12 border-t border-white/5">
+        <div class="container mx-auto px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0 text-center md:text-left">
+            <p class="text-gray-500 font-medium">© 2024 Hüseyin Karacif. Tüm hakları saklıdır.</p>
+            <div class="flex space-x-8">
+                <a href="#" class="text-gray-500 hover:text-white transition-colors"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-gray-500 hover:text-white transition-colors"><i class="fab fa-github"></i></a>
+                <a href="#" class="text-gray-500 hover:text-white transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-gray-500 hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
             </div>
-            <p class="text-gray-500 text-sm">&copy; <span id="year"></span> Hüseyin Karacif. Tüm hakları saklıdır.</p>
+            <p class="text-gray-500 font-medium">Built with <span class="text-accent-tertiary">❤️</span> & Tailwind</p>
         </div>
     </footer>
+
+    <!-- Game Modal Container -->
+    <div id="game-container" class="hidden fixed inset-0 z-[100] bg-darker/98 backdrop-blur-2xl flex-col items-center justify-center p-4">
+        <button onclick="closeGame()" class="absolute top-8 right-8 text-gray-500 hover:text-white text-3xl transition-colors"><i class="fas fa-times"></i></button>
+        <div id="game-canvas-wrapper" class="w-full max-w-2xl flex flex-col items-center"></div>
+    </div>
 
     <script src="script.js"></script>
 </body>
 </html>
+

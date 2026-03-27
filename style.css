@@ -1,36 +1,162 @@
-/* Custom Base Styles */
+/* --- Custom Variables & Base --- */
+:root {
+  --accent-primary: #6366f1;
+  --accent-secondary: #a855f7;
+  --accent-tertiary: #ec4899;
+  --surface-50: #111111;
+  --surface-100: #1a1a1a;
+  --surface-200: #262626;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    background-color: #050505;
-    background-image: radial-gradient(circle at 50% 0%, #111827 0%, #050505 50%);
-    background-attachment: fixed;
+  cursor: none;
+  background-color: #050505;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
-}
-::-webkit-scrollbar-track {
-    background: #0a0a0a;
-}
-::-webkit-scrollbar-thumb {
-    background: #374151;
-    border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: #6366f1;
+/* --- Custom Cursor --- */
+#cursor {
+  position: fixed;
+  pointer-events: none;
+  z-index: 10000;
+  mix-blend-mode: difference;
+  transition: transform 0.1s ease-out, width 0.3s, height 0.3s, background-color 0.3s;
 }
 
-/* Reveal Animation Class */
+#cursor-dot {
+  position: fixed;
+  pointer-events: none;
+  z-index: 10001;
+  transition: transform 0.05s ease-out;
+}
+
+.cursor-hover {
+  transform: scale(2.5);
+  background-color: white !important;
+  opacity: 0.2;
+}
+
+/* --- Noise Overlay --- */
+.noise-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.03;
+  z-index: 1;
+}
+
+/* --- Animations --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 .reveal.active {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* Mobile Menu Transition */
-#mobile-menu {
-    transition: all 0.3s ease-in-out;
+@keyframes gradient-x {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 8s ease infinite;
+}
+
+/* --- Navbar Glassmorphism --- */
+#navbar.scrolled {
+  background-color: rgba(2, 2, 2, 0.7);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  height: 70px;
+}
+
+/* --- Custom Scrollbar --- */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020202;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1a1a1a;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
+
+/* --- Navigation Links --- */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--accent-primary);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* --- Project Cards --- */
+.project-card {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Skills --- */
+.skill-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-card:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* --- Game Canvas Enhancements --- */
+#game-canvas-wrapper canvas {
+  box-shadow: 0 0 50px rgba(99, 102, 241, 0.1);
+}
+
+/* --- Mobile Menu --- */
+#mobile-menu.active {
+  transform: translateX(0);
+}
+
+/* --- Text Selection --- */
+::selection {
+  background: var(--accent-primary);
+  color: white;
 }
