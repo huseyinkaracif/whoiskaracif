@@ -1,140 +1,249 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hüseyin Karacif - Senior Software Developer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Hüseyin Karacif | Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Poppins', 'sans-serif'] },
+                    colors: { dark: '#0a0a0a', darker: '#050505', primary: '#6366f1', secondary: '#ec4899' },
+                    animation: { 'blob': 'blob 7s infinite' },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <nav class="navbar">
-        <div class="container">
-            <a href="#" class="logo">HK.</a>
-            <ul class="nav-links">
-                <li><a href="#hakkimda">Hakkımda</a></li>
-                <li><a href="#yetenekler">Yetenekler</a></li>
-                <li><a href="#deneyim">Deneyim</a></li>
-                <li><a href="#projeler">Projeler</a></li>
-                <li><a href="#egitim">Eğitim & Sertifikalar</a></li>
-                <li><a href="#iletisim">İletişim</a></li>
-            </ul>
-            <div class="hamburger">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </nav>
+<body class="bg-dark text-gray-200 font-sans antialiased overflow-x-hidden selection:bg-primary selection:text-white">
 
-    <header class="hero">
-        <div class="container hero-content">
-            <h1>Merhaba, Ben <span class="highlight">Hüseyin Karacif</span></h1>
-            <h2>Senior Software Developer</h2>
-            <p>İstanbul / Türkiye</p>
-            <a href="#iletisim" class="btn">İletişime Geç</a>
+    <div class="fixed inset-0 z-0 pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-primary/20 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob"></div>
+        <div class="absolute top-[20%] right-[-10%] w-96 h-96 bg-secondary/20 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-2000"></div>
+        <div class="absolute bottom-[-20%] left-[20%] w-96 h-96 bg-purple-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-4000"></div>
+    </div>
+
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-transparent py-4">
+        <div class="container mx-auto px-6 md:px-12 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold tracking-tighter text-white">HK<span class="text-primary">.</span></a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="text-gray-300 hover:text-white transition-colors text-sm font-medium uppercase tracking-wider relative group">Ana Sayfa<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span></a>
+                <a href="#about" class="text-gray-300 hover:text-white transition-colors text-sm font-medium uppercase tracking-wider relative group">Hakkımda<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span></a>
+                <a href="#skills" class="text-gray-300 hover:text-white transition-colors text-sm font-medium uppercase tracking-wider relative group">Yetenekler<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span></a>
+                <a href="#projects" class="text-gray-300 hover:text-white transition-colors text-sm font-medium uppercase tracking-wider relative group">Projeler<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span></a>
+                <a href="#contact" class="text-gray-300 hover:text-white transition-colors text-sm font-medium uppercase tracking-wider relative group">İletişim<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span></a>
+            </nav>
+            <button id="mobile-menu-btn" class="md:hidden text-gray-300 focus:outline-none"><i class="fas fa-bars text-2xl"></i></button>
+        </div>
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-darker/95 backdrop-blur-md border-b border-gray-800 flex-col items-center py-6 space-y-4 shadow-xl">
+            <a href="#home" class="mobile-link text-gray-300 hover:text-white text-lg font-medium">Ana Sayfa</a>
+            <a href="#about" class="mobile-link text-gray-300 hover:text-white text-lg font-medium">Hakkımda</a>
+            <a href="#skills" class="mobile-link text-gray-300 hover:text-white text-lg font-medium">Yetenekler</a>
+            <a href="#projects" class="mobile-link text-gray-300 hover:text-white text-lg font-medium">Projeler</a>
+            <a href="#contact" class="mobile-link text-gray-300 hover:text-white text-lg font-medium">İletişim</a>
         </div>
     </header>
 
-    <section id="hakkimda" class="section">
-        <div class="container">
-            <h2 class="section-title">Hakkımda</h2>
-            <p class="about-text">
-                Software Developer with hands-on experience in .NET, EF-Dapper, React, Flutter, Microservices, AWS, RESTful APIs, MSSQL, PostgreSQL, and Docker. Skilled in Agile software development methodology. Motivated by researching, developing, and utilizing new technologies. Passionate about writing code that adheres to clean code principles and clean architecture.
-            </p>
-        </div>
-    </section>
-
-    <section id="yetenekler" class="section bg-light">
-        <div class="container">
-            <h2 class="section-title">Yetenekler</h2>
-            <div class="skills-grid">
-                <span class="skill-tag">.NET</span>
-                <span class="skill-tag">C#</span>
-                <span class="skill-tag">React</span>
-                <span class="skill-tag">Flutter</span>
-                <span class="skill-tag">Microservices</span>
-                <span class="skill-tag">AWS</span>
-                <span class="skill-tag">MSSQL</span>
-                <span class="skill-tag">PostgreSQL</span>
-                <span class="skill-tag">Docker</span>
-                <span class="skill-tag">Clean Architecture</span>
-            </div>
-        </div>
-    </section>
-
-    <section id="deneyim" class="section">
-        <div class="container">
-            <h2 class="section-title">Deneyim</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <h3>Software Developer</h3>
-                    <h4>obilet</h4>
-                    <p>Modern yazılım prensipleriyle Agile yöntemler kullanılarak backend ve frontend sistemleri üzerine geliştirmeler yapmaktayım.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projeler" class="section bg-light">
-        <div class="container">
-            <h2 class="section-title">Projeler</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3>DYS - Depo Yönetim Sistemi</h3>
-                    <p class="project-date">Ocak 2021 - Ocak 2022</p>
-                    <p>Depo süreçlerinin yönetilmesi ve optimize edilmesi amacıyla geliştirilen yönetim sistemi.</p>
-                </div>
-                <div class="project-card">
-                    <h3>R+ El Terminali</h3>
-                    <p class="project-date">Temmuz 2020 - Ocak 2021</p>
-                    <p>El terminalleri için geliştirilen, saha operasyonlarını hızlandıran yazılım çözümü.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="egitim" class="section">
-        <div class="container">
-            <div class="split-section">
-                <div class="half-section">
-                    <h2 class="section-title">Eğitim</h2>
-                    <div class="education-item">
-                        <h3>Balıkesir Üniversitesi</h3>
-                        <p class="date">2016 - 2020</p>
+    <main class="relative z-10">
+        <section id="home" class="min-h-screen flex items-center justify-center pt-20">
+            <div class="container mx-auto px-6 md:px-12 flex flex-col items-center text-center">
+                <div class="reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
+                    <span class="text-primary font-medium tracking-widest uppercase mb-4 block">Merhaba, Ben</span>
+                    <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">Hüseyin <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Karacif</span></h1>
+                    <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">Modern, kullanıcı odaklı ve yüksek performanslı web deneyimleri tasarlayan ve geliştiren yaratıcı bir Yazılım Geliştiricisi.</p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <a href="#projects" class="px-8 py-4 bg-primary hover:bg-indigo-600 text-white rounded-full font-semibold transition-all shadow-[0_0_20px_rgba(99,102,241,0.4)] hover:shadow-[0_0_30px_rgba(99,102,241,0.6)] transform hover:-translate-y-1">Projelerimi İncele</a>
+                        <a href="#contact" class="px-8 py-4 bg-transparent border border-gray-600 hover:border-white text-white rounded-full font-semibold transition-all transform hover:-translate-y-1">İletişime Geç</a>
                     </div>
                 </div>
-                <div class="half-section">
-                    <h2 class="section-title">Sertifikalar</h2>
-                    <ul class="cert-list">
-                        <li><i class="fas fa-certificate"></i> C# .Net Core Bootcamp (Kodluyoruz)</li>
-                        <li><i class="fas fa-certificate"></i> Exam 480 (Microsoft)</li>
-                        <li><i class="fas fa-certificate"></i> Yazılım Uzmanlığı (MEB)</li>
-                        <li><i class="fas fa-certificate"></i> Yazılım ve Veritabanı Uzmanlığı (BilgeAdam)</li>
-                    </ul>
+            </div>
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce cursor-pointer" onclick="document.getElementById('about').scrollIntoView()">
+                <span class="text-xs text-gray-500 uppercase tracking-widest mb-2">Aşağı Kaydır</span>
+                <i class="fas fa-chevron-down text-gray-400"></i>
+            </div>
+        </section>
+
+        <section id="about" class="py-24 bg-darker/50">
+            <div class="container mx-auto px-6 md:px-12">
+                <div class="reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out mb-16 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Hakkımda</h2>
+                    <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
+                </div>
+                <div class="flex flex-col md:flex-row gap-12 items-center">
+                    <div class="w-full md:w-1/2 reveal opacity-0 translate-y-8 transition-all duration-1000 delay-200 ease-out">
+                        <div class="relative rounded-2xl overflow-hidden group">
+                            <div class="absolute inset-0 bg-gradient-to-t from-darker to-transparent z-10 opacity-60"></div>
+                            <img src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Hüseyin Karacif" class="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105 filter grayscale group-hover:grayscale-0">
+                            <div class="absolute bottom-0 left-0 p-8 z-20">
+                                <h3 class="text-2xl font-bold text-white">Yaratıcı Kodlama</h3>
+                                <p class="text-gray-300">Tasarımı kodla buluşturan detaylar.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 reveal opacity-0 translate-y-8 transition-all duration-1000 delay-300 ease-out space-y-6">
+                        <h3 class="text-2xl font-semibold text-white">Merhaba!</h3>
+                        <p class="text-gray-400 leading-relaxed text-lg">Ben Hüseyin Karacif. Tasarımın sınırlarını zorlamayı seven ve karmaşık problemleri zarif çözümlere dönüştürmekten keyif alan bir geliştiriciyim. Ön yüz teknolojilerindeki en son trendleri takip ederek, sadece estetik değil aynı zamanda erişilebilir ve performanslı web uygulamaları inşa ediyorum.</p>
+                        <p class="text-gray-400 leading-relaxed text-lg">Amacım, kullanıcıların hayatını kolaylaştıran, onlara ilham veren dijital deneyimler sunmak. Kod yazarken temiz mimari prensiplerine ve sürdürülebilirliğe büyük önem veriyorum.</p>
+                        <div class="grid grid-cols-2 gap-6 pt-4">
+                            <div><h4 class="text-primary font-bold text-3xl mb-1">5+</h4><p class="text-sm text-gray-500 uppercase tracking-wider">Yıllık Deneyim</p></div>
+                            <div><h4 class="text-primary font-bold text-3xl mb-1">50+</h4><p class="text-sm text-gray-500 uppercase tracking-wider">Tamamlanan Proje</p></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="iletisim" class="section bg-dark text-white">
-        <div class="container">
-            <h2 class="section-title text-white">İletişim</h2>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <p><a href="mailto:hsynkrcf@gmail.com" class="text-white">hsynkrcf@gmail.com</a></p>
+        <section id="skills" class="py-24">
+            <div class="container mx-auto px-6 md:px-12">
+                <div class="reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out mb-16 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Uzmanlık Alanlarım</h2>
+                    <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
+                    <p class="text-gray-400 mt-6 max-w-2xl mx-auto">Kullandığım teknolojiler ve yetkinliklerim.</p>
                 </div>
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <p>İstanbul / Türkiye</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                    <div class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-[100ms] ease-out bg-darker/80 border border-gray-800 rounded-xl p-6 flex flex-col items-center justify-center hover:border-primary/50 hover:bg-gray-900 transition-all group">
+                        <i class="fab fa-html5 text-4xl text-gray-500 group-hover:text-orange-500 transition-colors mb-3"></i><span class="text-gray-300 font-medium">HTML5</span>
+                    </div>
+                    <div class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-[200ms] ease-out bg-darker/80 border border-gray-800 rounded-xl p-6 flex flex-col items-center justify-center hover:border-primary/50 hover:bg-gray-900 transition-all group">
+                        <i class="fab fa-css3-alt text-4xl text-gray-500 group-hover:text-blue-500 transition-colors mb-3"></i><span class="text-gray-300 font-medium">CSS3</span>
+                    </div>
+                    <div class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-[300ms] ease-out bg-darker/80 border border-gray-800 rounded-xl p-6 flex flex-col items-center justify-center hover:border-primary/50 hover:bg-gray-900 transition-all group">
+                        <i class="fab fa-js text-4xl text-gray-500 group-hover:text-yellow-400 transition-colors mb-3"></i><span class="text-gray-300 font-medium">JavaScript</span>
+                    </div>
+                    <div class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-[400ms] ease-out bg-darker/80 border border-gray-800 rounded-xl p-6 flex flex-col items-center justify-center hover:border-primary/50 hover:bg-gray-900 transition-all group">
+                        <i class="fab fa-react text-4xl text-gray-500 group-hover:text-cyan-400 transition-colors mb-3"></i><span class="text-gray-300 font-medium">React</span>
+                    </div>
+                    <div class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-[500ms] ease-out bg-darker/80 border border-gray-800 rounded-xl p-6 flex flex-col items-center justify-center hover:border-primary/50 hover:bg-gray-900 transition-all group">
+                        <i class="fab fa-vuejs text-4xl text-gray-500 group-hover:text-green-500 transition-colors mb-3"></i><span class="text-gray-300 font-medium">Vue.js</span>
+                    </div>
+                    <div class="reveal opacity-0 translate-y-8 transition-all duration-700 delay-[600ms] ease-out bg-darker/80 border border-gray-800 rounded-xl p-6 flex flex-col items-center justify-center hover:border-primary/50 hover:bg-gray-900 transition-all group">
+                        <svg class="w-10 h-10 text-gray-500 group-hover:text-cyan-400 transition-colors mb-3" viewBox="0 0 24 24" fill="currentColor"><path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"/></svg>
+                        <span class="text-gray-300 font-medium">Tailwind</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Hüseyin Karacif. Tüm Hakları Saklıdır.</p>
+        <section id="projects" class="py-24 bg-darker/50">
+            <div class="container mx-auto px-6 md:px-12">
+                <div class="reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out mb-16 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Öne Çıkan Projeler</h2>
+                    <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="reveal opacity-0 translate-y-8 transition-all duration-1000 delay-100 ease-out bg-dark rounded-2xl overflow-hidden border border-gray-800 hover:border-primary/50 transition-all group shadow-lg">
+                        <div class="relative h-60 overflow-hidden">
+                            <div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-all z-10"></div>
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="E-Ticaret" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex gap-2 mb-4">
+                                <span class="text-xs font-semibold bg-primary/10 text-primary px-3 py-1 rounded-full">React</span>
+                                <span class="text-xs font-semibold bg-primary/10 text-primary px-3 py-1 rounded-full">Tailwind</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">Modern E-Ticaret Platformu</h3>
+                            <p class="text-gray-400 text-sm mb-4 line-clamp-3">Tam kapsamlı, yüksek performanslı ve kullanıcı dostu bir e-ticaret deneyimi. Sepet yönetimi, ödeme entegrasyonu ve admin paneli içerir.</p>
+                            <a href="#" class="inline-flex items-center text-sm font-medium text-white hover:text-primary transition-colors">Projeyi İncele <i class="fas fa-arrow-right ml-2 text-xs"></i></a>
+                        </div>
+                    </div>
+                    <div class="reveal opacity-0 translate-y-8 transition-all duration-1000 delay-200 ease-out bg-dark rounded-2xl overflow-hidden border border-gray-800 hover:border-secondary/50 transition-all group shadow-lg">
+                        <div class="relative h-60 overflow-hidden">
+                            <div class="absolute inset-0 bg-secondary/20 group-hover:bg-transparent transition-all z-10"></div>
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dashboard" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex gap-2 mb-4">
+                                <span class="text-xs font-semibold bg-secondary/10 text-secondary px-3 py-1 rounded-full">Vue.js</span>
+                                <span class="text-xs font-semibold bg-secondary/10 text-secondary px-3 py-1 rounded-full">SCSS</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-secondary transition-colors">Analitik Dashboard</h3>
+                            <p class="text-gray-400 text-sm mb-4 line-clamp-3">Büyük veri setlerini görselleştiren, gerçek zamanlı veri akışını destekleyen etkileşimli yönetim paneli arayüzü.</p>
+                            <a href="#" class="inline-flex items-center text-sm font-medium text-white hover:text-secondary transition-colors">Projeyi İncele <i class="fas fa-arrow-right ml-2 text-xs"></i></a>
+                        </div>
+                    </div>
+                    <div class="reveal opacity-0 translate-y-8 transition-all duration-1000 delay-300 ease-out bg-dark rounded-2xl overflow-hidden border border-gray-800 hover:border-purple-500/50 transition-all group shadow-lg">
+                        <div class="relative h-60 overflow-hidden">
+                            <div class="absolute inset-0 bg-purple-500/20 group-hover:bg-transparent transition-all z-10"></div>
+                            <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Portfolio" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex gap-2 mb-4">
+                                <span class="text-xs font-semibold bg-purple-500/10 text-purple-400 px-3 py-1 rounded-full">HTML5</span>
+                                <span class="text-xs font-semibold bg-purple-500/10 text-purple-400 px-3 py-1 rounded-full">GSAP</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">Kreatif Ajans Sitesi</h3>
+                            <p class="text-gray-400 text-sm mb-4 line-clamp-3">Pürüzsüz kaydırma efektleri ve karmaşık animasyonlarla desteklenmiş, ödüllü ajans web sitesi tasarımı ve geliştirmesi.</p>
+                            <a href="#" class="inline-flex items-center text-sm font-medium text-white hover:text-purple-400 transition-colors">Projeyi İncele <i class="fas fa-arrow-right ml-2 text-xs"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-24 relative overflow-hidden">
+            <div class="container mx-auto px-6 md:px-12 relative z-10">
+                <div class="reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out mb-16 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">İletişime Geçin</h2>
+                    <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
+                    <p class="text-gray-400 mt-6 max-w-2xl mx-auto">Yeni bir proje fikriniz mi var? Beraber çalışmak veya sadece merhaba demek için mesaj gönderin.</p>
+                </div>
+                <div class="max-w-4xl mx-auto bg-darker/80 border border-gray-800 rounded-2xl p-8 md:p-12 shadow-2xl backdrop-blur-sm reveal opacity-0 translate-y-8 transition-all duration-1000 delay-200 ease-out">
+                    <form class="space-y-6" onsubmit="event.preventDefault(); alert('Mesajınız başarıyla gönderildi!');">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-400 mb-2">İsim</label>
+                                <input type="text" id="name" class="w-full bg-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="Adınız Soyadınız" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-400 mb-2">E-posta</label>
+                                <input type="email" id="email" class="w-full bg-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="ornek@email.com" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-400 mb-2">Konu</label>
+                            <input type="text" id="subject" class="w-full bg-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="Mesajınızın konusu" required>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-400 mb-2">Mesaj</label>
+                            <textarea id="message" rows="5" class="w-full bg-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none" placeholder="Mesajınızı buraya yazın..." required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-gradient-to-r from-primary to-secondary hover:from-indigo-600 hover:to-pink-600 text-white font-bold py-4 rounded-lg transition-all shadow-lg transform hover:-translate-y-1">
+                            Mesaj Gönder
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-darker border-t border-gray-900 py-12">
+        <div class="container mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-2xl font-bold tracking-tighter text-white">HK<span class="text-primary">.</span></div>
+            <div class="flex space-x-6">
+                <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary transition-all"><i class="fab fa-github"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#0077b5] transition-all"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#1DA1F2] transition-all"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:text-white hover:bg-secondary transition-all"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p class="text-gray-500 text-sm">&copy; <span id="year"></span> Hüseyin Karacif. Tüm hakları saklıdır.</p>
         </div>
     </footer>
 
