@@ -133,6 +133,9 @@ document.addEventListener('DOMContentLoaded', () => {
             else if(event.keyCode == 39 && d != "LEFT") d = "RIGHT";
             else if(event.keyCode == 40 && d != "UP") d = "DOWN";
         }
+        
+        // Remove previous event listener if it exists to prevent multiple bindings
+        document.removeEventListener("keydown", direction);
         document.addEventListener("keydown", direction);
 
         function draw() {
@@ -188,7 +191,18 @@ document.addEventListener('DOMContentLoaded', () => {
         // Set d initially to avoid unexpected behavior on the first move
         d = "RIGHT";
 
+        // Clear existing interval if any
+        if (gameLoop) clearInterval(gameLoop);
+        
         gameLoop = setInterval(draw, 100);
+        
+        // Update window object to expose the initialization function
+        window.initSnake = function() {
+            clearInterval(gameLoop);
+            document.removeEventListener("keydown", direction);
+            initSnake();
+        };
+        
         currentGame = { stop: () => { clearInterval(gameLoop); document.removeEventListener("keydown", direction); } };
     }
 
@@ -286,6 +300,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         cells.forEach(cell => cell.addEventListener('click', handleCellClick));
+        
+        // Expose to window for reset button
+        window.initTicTacToe = function() {
+            cells.forEach(cell => cell.removeEventListener('click', handleCellClick));
+            initTicTacToe();
+        };
+        
         currentGame = { stop: () => { cells.forEach(cell => cell.removeEventListener('click', handleCellClick)); } };
     }
 
