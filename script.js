@@ -124,6 +124,10 @@ document.addEventListener('DOMContentLoaded', () => {
         let gameLoop;
 
         function direction(event) {
+            // Sadece yön tuşları basıldığında ve sayfa kaydırılmasını önlemek için
+            if([37, 38, 39, 40].indexOf(event.keyCode) > -1) {
+                event.preventDefault();
+            }
             if(event.keyCode == 37 && d != "RIGHT") d = "LEFT";
             else if(event.keyCode == 38 && d != "DOWN") d = "UP";
             else if(event.keyCode == 39 && d != "LEFT") d = "RIGHT";
@@ -169,6 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if(snakeX < 0 || snakeX >= canvas.width || snakeY < 0 || snakeY >= canvas.height || collision(newHead, snake)) {
                 clearInterval(gameLoop);
                 overlay.classList.remove('hidden');
+                return;
             }
             snake.unshift(newHead);
         }
@@ -179,6 +184,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             return false;
         }
+
+        // Set d initially to avoid unexpected behavior on the first move
+        d = "RIGHT";
 
         gameLoop = setInterval(draw, 100);
         currentGame = { stop: () => { clearInterval(gameLoop); document.removeEventListener("keydown", direction); } };
@@ -251,6 +259,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
             currentPlayer = currentPlayer === "X" ? "O" : "X";
             statusDisplay.innerHTML = `Sıra: <span class="${currentPlayer === 'X' ? 'text-accent-tertiary' : 'text-accent-primary'} font-bold">${currentPlayer}</span>`;
+
+            if (currentPlayer === "O" && gameActive) {
+                setTimeout(botMove, 500); // Küçük bir gecikme ekle, botun düşündüğünü hissettir
+            }
+        }
+
+        function botMove() {
+            let emptyCells = [];
+            for (let i = 0; i < 9; i++) {
+                if (gameState[i] === "") {
+                    emptyCells.push(i);
+                }
+            }
+
+            if (emptyCells.length > 0) {
+                let randomIndex = Math.floor(Math.random() * emptyCells.length);
+                let moveIndex = emptyCells[randomIndex];
+                
+                gameState[moveIndex] = currentPlayer;
+                const cell = cells[moveIndex];
+                cell.textContent = currentPlayer;
+                cell.classList.add('text-accent-primary');
+                checkResult();
+            }
         }
 
         cells.forEach(cell => cell.addEventListener('click', handleCellClick));
