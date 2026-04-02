@@ -1,4 +1,5 @@
-# Proje Detayları: Hüseyin Karacif Kişisel Web Sitesi
+# This site was automatically generated for the AI Agent Test.
+Hüseyin Karacif did not write a single line of code.
 
 *Bu web sitesi, modern AI ajanları tarafından Hüseyin Karacif için özel olarak tasarlanıp geliştirilmiştir.*
 
